@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import { NotFoundError } from './errors';
 import { errorHandle } from './middlewares';
 import {
@@ -22,6 +23,15 @@ app.all('*', () => {
 
 app.use(errorHandle);
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000!!');
-});
+const start = async () => {
+  try {
+    await mongoose.connect('mongodb://auth-mongo-srv:27017/auth');
+  } catch (error) {
+    console.error(error);
+  }
+  app.listen(3000, () => {
+    console.log('Server is running on port 3000!!');
+  });
+};
+
+start();
