@@ -1,7 +1,8 @@
 import { Router, Request, Response } from 'express';
-import { body, validationResult } from 'express-validator';
+import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
-import { RequestValidationError, BadRequestError } from '../errors';
+import { BadRequestError } from '../errors';
+import { validateRequest } from '../middlewares';
 import { User } from '../models';
 
 const router = Router();
@@ -17,12 +18,8 @@ const validation = [
 router.post(
   '/api/users/signup',
   validation,
+  validateRequest,
   async (req: Request, res: Response) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      throw new RequestValidationError(errors.array());
-    }
-
     const { email, password } = req.body;
 
     const existingUser = await User.findOne({ email });
