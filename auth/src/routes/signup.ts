@@ -1,10 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
-import {
-  RequestValidationError,
-  DatabaseConnectionError,
-  BadRequestError,
-} from '../errors';
+import jwt from 'jsonwebtoken';
+import { RequestValidationError, BadRequestError } from '../errors';
 import { User } from '../models';
 
 const router = Router();
@@ -22,7 +19,6 @@ router.post(
   validation,
   async (req: Request, res: Response) => {
     const errors = validationResult(req);
-
     if (!errors.isEmpty()) {
       throw new RequestValidationError(errors.array());
     }
@@ -37,6 +33,18 @@ router.post(
 
     const user = User.build({ email, password });
     await user.save();
+
+    const userJwt = jwt.sign(
+      {
+        id: user.id,
+        email: user.email,
+      },
+      process.env.JWT_KEY!,
+      { expiresIn: '1d' }
+    );
+
+    req.session = { jwt: userJwt };
+
     return res.status(201).send(user);
   }
 );
