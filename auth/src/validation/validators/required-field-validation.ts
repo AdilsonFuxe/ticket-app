@@ -1,5 +1,5 @@
-import { MissingParamError } from '@src/interface/errors';
-import { Validation } from '@src/interface/protocols';
+import { MissingParamError } from '../../interface/errors';
+import { Validation } from '../../interface/protocols';
 
 export const requiredFieldValidation =
   (field: string): Validation =>

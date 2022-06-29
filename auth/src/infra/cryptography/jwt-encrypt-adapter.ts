@@ -1,4 +1,4 @@
-import { Encrypt } from '@src/data/protocols/cryptography';
+import { Encrypt } from '../../data/protocols/cryptography';
 import jwt from 'jsonwebtoken';
 import { BuildJwtEncryptAdapter } from './protocols';
 

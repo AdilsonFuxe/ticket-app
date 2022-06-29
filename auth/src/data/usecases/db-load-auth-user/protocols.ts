@@ -1,5 +1,5 @@
-import { Decrypt } from '@src/data/protocols/cryptography';
-import { LoadAuthUser } from '@src/domain/usecases';
+import { LoadAuthUser } from '../../../domain/usecases';
+import { Decrypt } from '../../protocols/cryptography';
 
 interface Dependencies {
   decrypt: Decrypt;

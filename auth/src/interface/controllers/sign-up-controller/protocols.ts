@@ -1,5 +1,5 @@
-import { SignIn, LoadOneUser, SignUp } from '@src/domain/usecases';
-import { Controller, Validation } from '@src/interface/protocols';
+import { SignIn, LoadOneUser, SignUp } from '../../../domain/usecases';
+import { Controller, Validation } from '../../protocols';
 
 interface Dependencies {
   signUp: SignUp;

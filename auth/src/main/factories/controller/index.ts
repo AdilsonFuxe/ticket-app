@@ -3,12 +3,9 @@ import {
   signInController,
   signOutController,
   signUpController,
-} from '@src/interface/controllers';
-import {
-  makeDbLoadOneUser,
-  makeDbSignIn,
-  makeDbSignUp,
-} from '@src/main/factories/usecases';
+} from '../../../interface/controllers';
+import { makeDbLoadOneUser, makeDbSignIn, makeDbSignUp } from '../usecases';
+
 import { makeSignUpValidation, makeSignInValidation } from './protocols';
 
 export const makeSignUpController = signUpController({

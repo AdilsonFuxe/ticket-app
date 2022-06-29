@@ -2,7 +2,7 @@ import express from 'express';
 import setupMiddleware from './middlewares';
 import setupRoutes from './routes';
 import setupHelmet from './config-helmet';
-import { NotFoundError } from '@src/interface/errors';
+import { NotFoundError } from '../../interface/errors';
 
 const app = express();
 

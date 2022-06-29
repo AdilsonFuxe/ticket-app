@@ -1,4 +1,4 @@
-import { LoadOneUSer } from '@src/domain/usecases';
+import { LoadOneUSer } from '../../../domain/usecases';
 
 export type LoadOneUserRepository = (
   params: LoadOneUserRepository.Params

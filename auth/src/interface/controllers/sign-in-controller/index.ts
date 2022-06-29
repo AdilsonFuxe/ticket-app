@@ -1,9 +1,4 @@
-import {
-  badRequest,
-  created,
-  unauthorized,
-  tryCatch,
-} from '@src/interface/helpers';
+import { badRequest, created, unauthorized, tryCatch } from '../../helpers';
 import { BuildSignIn } from './protocols';
 
 export const buildSignIn: BuildSignIn =

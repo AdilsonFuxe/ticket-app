@@ -1,4 +1,4 @@
-import { AuthUser } from '@src/domain/models';
+import { AuthUser } from '../../../domain/models';
 
 export type Encrypt = (params: Encrypt.Params) => string;
 

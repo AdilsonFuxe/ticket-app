@@ -2,7 +2,7 @@ import {
   Encrypt,
   HashPassword,
   Decrypt,
-} from '@src/data/protocols/cryptography';
+} from '../../data/protocols/cryptography';
 
 export type BuildBcryptHashPasswordAdapter = (salt: number) => HashPassword;
 export type BuildJwtEncryptAdapter = (secret: string) => Encrypt;

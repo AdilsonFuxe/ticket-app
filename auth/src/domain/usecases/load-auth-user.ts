@@ -1,4 +1,4 @@
-import { AuthUser } from '@src/domain/models';
+import { AuthUser } from '../models';
 
 export type LoadAuthUser = (accessToken: string) => LoadAuthUser.Response;
 

@@ -1,7 +1,6 @@
-import { Decrypt } from '@src/data/protocols/cryptography';
-import { AuthUser } from '@src/domain/models';
 import jwt from 'jsonwebtoken';
 import { BuildJwtDecryptAdapter } from './protocols';
+import { AuthUser } from '../../domain/models';
 
 export const jwtDecryptAdapter: BuildJwtDecryptAdapter =
   (secret: string) => (accessToken: string) => {

@@ -8,10 +8,6 @@
     "sourceMap": true,
     "rootDirs": ["src"] ,
     "moduleResolution": "Node",
-    "baseUrl": ".",
-    "paths": {
-      "@src/*": ["src/*"]
-    }
   },
   "include": [
     "src/**/*"

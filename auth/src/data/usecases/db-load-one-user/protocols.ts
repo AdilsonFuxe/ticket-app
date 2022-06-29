@@ -1,5 +1,5 @@
-import { LoadOneUserRepository } from '@src/data/protocols/db';
-import { LoadOneUser } from '@src/domain/usecases';
+import { LoadOneUser } from '../../../domain/usecases';
+import { LoadOneUserRepository } from '../../protocols/db';
 
 interface Dependencies {
   loadOneUserRepository: LoadOneUserRepository;

@@ -1,5 +1,5 @@
-import { Controller, HttpRequest } from '@src/interface/protocols';
 import { Response, Request, NextFunction } from 'express';
+import { Controller, HttpRequest } from '../../interface/protocols';
 
 export const adaptMiddleware = (middleware: Controller) => {
   return async (req: Request, res: Response, next: NextFunction) => {

@@ -1,5 +1,5 @@
-import { LoadAuthUser } from '@src/domain/usecases';
-import { Controller } from '@src/interface/protocols';
+import { LoadAuthUser } from '../../../domain/usecases';
+import { Controller } from '../../protocols';
 
 interface Dependencies {
   loadAuthUSer: LoadAuthUser;

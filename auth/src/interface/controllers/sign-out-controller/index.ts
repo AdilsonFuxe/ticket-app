@@ -1,10 +1,4 @@
-import {
-  badRequest,
-  created,
-  unauthorized,
-  tryCatch,
-  noContent,
-} from '@src/interface/helpers';
+import { noContent, tryCatch } from '../../helpers';
 import { BuildSignOut } from './protocols';
 
 export const buildSignOut: BuildSignOut = () => async (httpRequest) => {

@@ -1,4 +1,4 @@
-import { User } from '@src/domain/models';
+import { User } from '../../../domain/models';
 
 export type AddUserRepository = (
   params: AddUserRepository.Params

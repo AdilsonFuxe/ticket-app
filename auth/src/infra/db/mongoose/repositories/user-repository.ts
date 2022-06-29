@@ -1,6 +1,8 @@
-import { AddUserRepository } from '@src/data/protocols/db';
-import { LoadOneUser } from '@src/domain/usecases';
-import { UserModel } from '@src/infra/db/mongoose/models';
+import {
+  AddUserRepository,
+  LoadOneUserRepository,
+} from '../../../../data/protocols/db';
+import { UserModel } from '../models';
 
 export const addUserRepository: AddUserRepository = async (
   params: AddUserRepository.Params
@@ -10,7 +12,10 @@ export const addUserRepository: AddUserRepository = async (
   return doc;
 };
 
-export const loadOneUserRepository: LoadOneUser = async ({ email, id }) => {
+export const loadOneUserRepository: LoadOneUserRepository = async ({
+  email,
+  id,
+}) => {
   const query = {};
   if (email) {
     Object.assign(query, { email });

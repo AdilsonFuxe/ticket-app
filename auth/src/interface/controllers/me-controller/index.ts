@@ -1,4 +1,4 @@
-import { tryCatch, ok } from '@src/interface/helpers';
+import { ok, tryCatch } from '../../helpers';
 import { BuildMe } from './protocols';
 
 export const buildMe: BuildMe = () => async (httpRequest) => {

@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import { adaptRoute } from '@src/main/adapters';
+import { adaptRoute } from '../adapters';
 import {
   makeMeController,
   makeSignInController,
   makeSignOutController,
   makeSignUpController,
-} from '@src/main/factories/controller';
-import { auth } from '@src/main/config/auth';
+} from '../factories/controller';
+import { auth } from '../config/auth';
 
 export default (router: Router): void => {
   router.post('/signin', adaptRoute(makeSignInController));

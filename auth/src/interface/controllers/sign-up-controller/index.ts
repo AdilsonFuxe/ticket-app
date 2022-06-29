@@ -1,10 +1,5 @@
-import { EmailInUseError } from '@src/interface/errors';
-import {
-  badRequest,
-  created,
-  tryCatch,
-  forbidden,
-} from '@src/interface/helpers';
+import { EmailInUseError } from '../../errors';
+import { badRequest, created, tryCatch, forbidden } from '../../helpers';
 import { BuildSignUp } from './protocols';
 
 export const buildSignUp: BuildSignUp =

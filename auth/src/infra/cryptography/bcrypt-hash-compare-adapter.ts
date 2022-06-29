@@ -1,5 +1,5 @@
-import { HashPasswordCompare } from '@src/data/protocols/cryptography';
 import bcrypt from 'bcrypt';
+import { HashPasswordCompare } from '../../data/protocols/cryptography';
 
 export const bcryptHashPasswordCompareAdapter: HashPasswordCompare = async (
   value: string,

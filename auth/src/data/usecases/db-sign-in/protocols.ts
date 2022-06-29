@@ -1,6 +1,6 @@
-import { Encrypt, HashPasswordCompare } from '@src/data/protocols/cryptography';
-import { LoadOneUserRepository } from '@src/data/protocols/db';
-import { SignIn } from '@src/domain/usecases';
+import { SignIn } from '../../../domain/usecases';
+import { Encrypt, HashPasswordCompare } from '../../protocols/cryptography';
+import { LoadOneUserRepository } from '../../protocols/db';
 
 interface Dependencies {
   encrypt: Encrypt;

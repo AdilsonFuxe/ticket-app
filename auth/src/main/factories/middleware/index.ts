@@ -1,5 +1,5 @@
-import { authMiddleware } from '@src/interface/middlewares/auth-middleware';
-import { makeDbLoadAuthUSer } from '@src/main/factories/usecases';
+import { authMiddleware } from '../../../interface/middlewares/auth-middleware';
+import { makeDbLoadAuthUSer } from '../usecases';
 
 export const makeAuthMiddleware = authMiddleware({
   loadAuthUSer: makeDbLoadAuthUSer(),

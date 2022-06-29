@@ -1,4 +1,4 @@
-import { Controller, HttpRequest } from '@src/interface/protocols';
+import { Controller, HttpRequest } from '../protocols';
 import { serverError } from './http-helper';
 
 type GenericFunction<T> = (...arg: T[]) => Controller;

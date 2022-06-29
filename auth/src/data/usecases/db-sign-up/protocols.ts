@@ -1,6 +1,6 @@
-import { HashPassword } from '@src/data/protocols/cryptography';
-import { AddUserRepository } from '@src/data/protocols/db';
-import { SignUp } from '@src/domain/usecases';
+import { SignUp } from '../../../domain/usecases';
+import { HashPassword } from '../../protocols/cryptography';
+import { AddUserRepository } from '../../protocols/db';
 
 interface Dependencies {
   hashPassword: HashPassword;

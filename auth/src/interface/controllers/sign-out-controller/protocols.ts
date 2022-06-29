@@ -1,3 +1,3 @@
-import { Controller } from '@src/interface/protocols';
+import { Controller } from '../../protocols';
 
 export type BuildSignOut = () => Controller;

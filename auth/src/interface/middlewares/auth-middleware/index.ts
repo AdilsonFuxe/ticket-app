@@ -1,5 +1,5 @@
-import { AccessDeniedError } from '@src/interface/errors';
-import { forbidden, ok, tryCatch } from '@src/interface/helpers';
+import { AccessDeniedError } from '../../errors';
+import { forbidden, ok, tryCatch } from '../../helpers';
 import { BuildAuthMiddleware } from './protocols';
 
 export const buildAuthMiddleware: BuildAuthMiddleware =

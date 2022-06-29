@@ -1,4 +1,4 @@
-import { User } from '@src/domain/models';
+import { User } from '../models';
 
 export type LoadOneUser = (
   params: LoadOneUSer.Params

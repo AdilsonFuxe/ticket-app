@@ -1,9 +1,5 @@
-import {
-  NotFoundError,
-  ServerError,
-  UnauthorizedError,
-} from '@src/interface/errors';
-import { HttpResponse, HttpStatusCode } from '@src/interface/protocols';
+import { NotFoundError, ServerError, UnauthorizedError } from '../errors';
+import { HttpResponse, HttpStatusCode } from '../protocols';
 
 export const badRequest = (error: Error): HttpResponse => ({
   statusCode: HttpStatusCode.badRequest,

@@ -1,8 +1,8 @@
-import { Validation } from '@src/interface/protocols';
+import { Validation } from '../../../interface/protocols';
 import {
   requiredFieldValidation,
   validationComposite,
-} from '@src/validation/validators';
+} from '../../../validation/validators';
 
 export const makeSignUpValidation = (): Validation => {
   const validations: Validation[] = [];
