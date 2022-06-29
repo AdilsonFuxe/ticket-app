@@ -4,7 +4,7 @@ import env from './config/env';
 import app from './config/app';
 
 const start = async () => {
-  if (!process.env.JWT_KEY) {
+  if (!env.jwtSecret) {
     throw new Error('JWT_KEY must be defined');
   }
   try {
