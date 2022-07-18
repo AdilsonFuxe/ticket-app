@@ -6,9 +6,10 @@ export const badRequest = (error: Error): HttpResponse => ({
   body: error,
 });
 
-export const created = (data: any): HttpResponse => ({
+export const created = (data: any, session?: any): HttpResponse => ({
   statusCode: HttpStatusCode.created,
   body: data,
+  session,
 });
 
 export const serverError = (error: Error): HttpResponse => ({

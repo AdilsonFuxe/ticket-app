@@ -10,7 +10,7 @@ import { auth } from '../config/auth';
 
 export default (router: Router): void => {
   router.post('/signin', adaptRoute(makeSignInController));
-  router.get('/signup', adaptRoute(makeSignUpController));
-  router.get('/signout', adaptRoute(makeSignOutController));
-  router.put('/me', auth, adaptRoute(makeMeController));
+  router.post('/signup', adaptRoute(makeSignUpController));
+  router.post('/signout', auth, adaptRoute(makeSignOutController));
+  router.get('/me', auth, adaptRoute(makeMeController));
 };

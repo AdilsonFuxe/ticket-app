@@ -16,8 +16,8 @@ export const buildSignUp: BuildSignUp =
     }
     await signUp({ email, password });
     const auth = await signIn({ email, password });
-    httpRequest.session = { jwt: auth.accessToken };
-    return created(auth.user);
+    const session = { jwt: auth.accessToken };
+    return created(auth.user, session);
   };
 
 export const signUpController = tryCatch(buildSignUp);

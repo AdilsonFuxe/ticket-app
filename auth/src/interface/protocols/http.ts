@@ -14,6 +14,7 @@ export enum HttpStatusCode {
 export type HttpResponse = {
   statusCode: HttpStatusCode;
   body?: any;
+  session?: any;
 };
 
 export type HttpRequest = {
@@ -24,7 +25,7 @@ export type HttpRequest = {
   ip?: string;
   method?: string;
   userAgent?: string;
+  session?: any;
   currentUser?: AuthUser;
   path?: string;
-  session?: any;
 };

@@ -13,8 +13,8 @@ export const buildSignIn: BuildSignIn =
     if (!auth) {
       return unauthorized();
     }
-    httpRequest.session = { jwt: auth.accessToken };
-    return created(auth.user);
+    const session = { jwt: auth.accessToken };
+    return created(auth.user, session);
   };
 
 export const signInController = tryCatch(buildSignIn);

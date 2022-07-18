@@ -1,4 +1,4 @@
-import './setup-env';
+import 'dotenv/config';
 
 export default {
   mongoUrl: 'mongodb://auth-mongo-srv:27017/auth',

@@ -8,6 +8,7 @@ export const buildAuthMiddleware: BuildAuthMiddleware =
     const accessToken = httpRequest.session?.jwt;
     if (accessToken) {
       const currentUser = loadAuthUSer(accessToken);
+      console.log(currentUser);
       if (currentUser) {
         return ok({ currentUser });
       }
