@@ -1,10 +1,15 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 
-let mongo: any;
+let mongo: MongoMemoryServer;
+
+process.env.JWT_KEY = 'asdasdasd';
+
+jest.setTimeout(10000000);
 
 beforeAll(async () => {
   mongo = await MongoMemoryServer.create();
+
   const mongoUri = mongo.getUri();
   await mongoose.connect(mongoUri, {});
 });
