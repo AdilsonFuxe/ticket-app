@@ -11,10 +11,20 @@ export enum HttpStatusCode {
   serverError = 500,
 }
 
+export enum HttpSessionType {
+  createSession = 'createSession',
+  destroySession = 'destroySession',
+}
+
+export type HttpResponseSession = {
+  data: Record<string, string>;
+  type: HttpSessionType;
+};
+
 export type HttpResponse = {
   statusCode: HttpStatusCode;
   body?: any;
-  session?: any;
+  session?: HttpResponseSession;
 };
 
 export type HttpRequest = {
@@ -25,7 +35,7 @@ export type HttpRequest = {
   ip?: string;
   method?: string;
   userAgent?: string;
-  session?: any;
+  session?: Record<string, string>;
   currentUser?: AuthUser;
   path?: string;
 };

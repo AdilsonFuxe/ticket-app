@@ -1,4 +1,5 @@
 import { badRequest, created, unauthorized, tryCatch } from '../../helpers';
+import { HttpSessionType } from '../../protocols';
 import { BuildSignIn } from './protocols';
 
 export const buildSignIn: BuildSignIn =
@@ -14,7 +15,10 @@ export const buildSignIn: BuildSignIn =
       return unauthorized();
     }
     const session = { jwt: auth.accessToken };
-    return created(auth.user, session);
+    return created(auth.user, {
+      type: HttpSessionType.createSession,
+      data: session,
+    });
   };
 
 export const signInController = tryCatch(buildSignIn);

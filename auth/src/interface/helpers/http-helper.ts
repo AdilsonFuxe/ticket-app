@@ -1,12 +1,19 @@
 import { NotFoundError, ServerError, UnauthorizedError } from '../errors';
-import { HttpResponse, HttpStatusCode } from '../protocols';
+import {
+  HttpResponse,
+  HttpResponseSession,
+  HttpStatusCode,
+} from '../protocols';
 
 export const badRequest = (error: Error): HttpResponse => ({
   statusCode: HttpStatusCode.badRequest,
   body: error,
 });
 
-export const created = (data: any, session?: any): HttpResponse => ({
+export const created = (
+  data: any,
+  session?: HttpResponseSession
+): HttpResponse => ({
   statusCode: HttpStatusCode.created,
   body: data,
   session,
@@ -27,8 +34,9 @@ export const ok = (data: any): HttpResponse => ({
   body: data,
 });
 
-export const noContent = (): HttpResponse => ({
+export const noContent = (session?: HttpResponseSession): HttpResponse => ({
   statusCode: HttpStatusCode.noContent,
+  session,
 });
 
 export const unauthorized = (): HttpResponse => ({

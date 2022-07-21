@@ -1,5 +1,6 @@
 import { EmailInUseError } from '../../errors';
 import { badRequest, created, tryCatch, forbidden } from '../../helpers';
+import { HttpSessionType } from '../../protocols';
 import { BuildSignUp } from './protocols';
 
 export const buildSignUp: BuildSignUp =
@@ -17,7 +18,10 @@ export const buildSignUp: BuildSignUp =
     await signUp({ email, password });
     const auth = await signIn({ email, password });
     const session = { jwt: auth.accessToken };
-    return created(auth.user, session);
+    return created(auth.user, {
+      data: session,
+      type: HttpSessionType.createSession,
+    });
   };
 
 export const signUpController = tryCatch(buildSignUp);

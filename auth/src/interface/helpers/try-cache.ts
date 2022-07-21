@@ -9,7 +9,6 @@ export function tryCatch<T>(fn: GenericFunction<T>) {
       try {
         return await fn(...props)(httpRequest);
       } catch (error: any) {
-        console.info(error);
         return serverError(error);
       }
     };
