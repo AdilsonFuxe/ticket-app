@@ -17,4 +17,8 @@ describe('POST /api/users/me', () => {
       .expect(200);
     expect(response.body.currentUser.email).toBe('teste@test.co.ao');
   });
+
+  it('Should return 403  if not authenticated', async () => {
+    await request(app).get('/api/users/me').expect(403);
+  });
 });
