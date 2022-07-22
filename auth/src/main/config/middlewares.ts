@@ -10,7 +10,7 @@ export default (app: Express): void => {
   app.use(
     cookieSession({
       signed: false,
-      secure: true,
+      secure: process.env.NODE_ENV != 'test',
     })
   );
 
