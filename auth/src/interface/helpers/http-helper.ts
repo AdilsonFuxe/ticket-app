@@ -29,9 +29,10 @@ export const notFoundError = (paramName: string): HttpResponse => ({
   body: new NotFoundError(paramName),
 });
 
-export const ok = (data: any): HttpResponse => ({
+export const ok = (data: any, session?: HttpResponseSession): HttpResponse => ({
   statusCode: HttpStatusCode.ok,
   body: data,
+  session,
 });
 
 export const noContent = (session?: HttpResponseSession): HttpResponse => ({

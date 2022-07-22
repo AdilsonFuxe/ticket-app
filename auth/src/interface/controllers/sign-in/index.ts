@@ -1,4 +1,4 @@
-import { badRequest, created, unauthorized, tryCatch } from '../../helpers';
+import { badRequest, unauthorized, tryCatch, ok } from '../../helpers';
 import { HttpSessionType } from '../../protocols';
 import { BuildSignIn } from './protocols';
 
@@ -15,7 +15,7 @@ export const buildSignIn: BuildSignIn =
       return unauthorized();
     }
     const session = { jwt: auth.accessToken };
-    return created(auth.user, {
+    return ok(auth.user, {
       type: HttpSessionType.createSession,
       data: session,
     });
