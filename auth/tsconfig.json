@@ -9,7 +9,5 @@
     "rootDirs": ["src"] ,
     "moduleResolution": "Node",
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*", "jest-integration-config.ts" ]
 }

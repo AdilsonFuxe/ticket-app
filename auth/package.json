@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/main/server.ts",
-    "test": "jest --watchAll --no-cache"
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand --no-cache",
+    "test:unit": "npm test -- --passWithNoTests --watch -c jest-unit-config.ts",
+    "test:integration": "npm test -- --passWithNoTests --watch -c jest-integration-config.ts",
+    "test:staged": "npm test -- --findRelatedTests",
+    "test:ci": "npm test -- --coverage"
   },
   "keywords": [],
   "author": "",
