@@ -1,5 +1,14 @@
 import { Response, Request, NextFunction } from 'express';
+import { AuthUser } from '../../domain/models';
 import { Controller, HttpRequest } from '../../interface/protocols';
+
+declare global {
+  namespace Express {
+    interface Request {
+      currentUser?: AuthUser;
+    }
+  }
+}
 
 export const adaptMiddleware = (middleware: Controller) => {
   return async (req: Request, res: Response, next: NextFunction) => {
@@ -8,7 +17,7 @@ export const adaptMiddleware = (middleware: Controller) => {
     };
     const httpResponse = await middleware(httpRequest);
     if (httpResponse.statusCode === 200) {
-      res.status(httpResponse.statusCode).json(httpResponse.body);
+      req.currentUser = httpResponse.body.currentUser;
       next();
     } else {
       res

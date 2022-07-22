@@ -17,7 +17,7 @@ export enum HttpSessionType {
 }
 
 export type HttpResponseSession = {
-  data: Record<string, string>;
+  data: any;
   type: HttpSessionType;
 };
 
@@ -35,7 +35,7 @@ export type HttpRequest = {
   ip?: string;
   method?: string;
   userAgent?: string;
-  session?: Record<string, string>;
+  session?: any;
   currentUser?: AuthUser;
   path?: string;
 };

@@ -16,14 +16,16 @@ export const adaptRoute = (controller: Controller) => {
       method: req.method,
       path: req.path,
       userAgent: req.headers['user-agent'],
+      currentUser: req?.currentUser,
     };
     const httpResponse = await controller(httpRequest);
 
     if (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299) {
-      if (httpResponse.session) {
-        switch (httpResponse.session.type) {
+      const session = httpResponse.session;
+      if (session) {
+        switch (session.type) {
           case HttpSessionType.createSession:
-            req.session = httpResponse.session.data;
+            req.session = session.data;
             break;
           case HttpSessionType.destroySession:
             req.session = null;
