@@ -47,4 +47,23 @@ describe('POST /api/users/signin', () => {
       })
       .expect(401);
   });
+
+  it('Should set a cookie when given valid credentials', async () => {
+    await request(app)
+      .post('/api/users/signup')
+      .send({
+        email: 'any_mail@mail.co.ao',
+        password: '12ewddwdwi',
+      })
+      .expect(201);
+
+    const response = await request(app)
+      .post('/api/users/signin')
+      .send({
+        email: 'any_mail@mail.co.ao',
+        password: '12ewddwdwi',
+      })
+      .expect(200);
+    expect(response.get('Set-Cookie')).toBeDefined();
+  });
 });
