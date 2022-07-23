@@ -2,6 +2,7 @@ import { Validation } from '../../../interface/protocols';
 import {
   requiredFieldValidation,
   validationComposite,
+  emailValidation,
 } from '../../../validation/validators';
 
 export const makeSignUpValidation = (): Validation => {
@@ -11,6 +12,7 @@ export const makeSignUpValidation = (): Validation => {
   for (const field of requiredFields) {
     validations.push(requiredFieldValidation(field));
   }
+  validations.push(emailValidation('email'));
   return validationComposite(validations);
 };
 
@@ -21,5 +23,6 @@ export const makeSignInValidation = (): Validation => {
   for (const field of requiredFields) {
     validations.push(requiredFieldValidation(field));
   }
+  validations.push(emailValidation('email'));
   return validationComposite(validations);
 };
