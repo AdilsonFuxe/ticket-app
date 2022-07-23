@@ -4,10 +4,19 @@ import axios from 'axios';
 export default () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState({});
   const onSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post('/api/users/signup', { email, password });
-    console.log(response);
+    try {
+      const response = await axios.post('/api/users/signup', {
+        email,
+        password,
+      });
+      console.log(response);
+    } catch (error) {
+      console.error(error.response.data);
+      setError(error.response.data);
+    }
   };
   return (
     <form onSubmit={onSubmit}>
@@ -29,6 +38,12 @@ export default () => {
           className="form-control"
         />
       </div>
+      {error.error && (
+        <div className="alert alert-danger">
+          <h4>Ooops....</h4>
+          {error.error}
+        </div>
+      )}
       <button className="btn btn-primary">Sign Up</button>
     </form>
   );
