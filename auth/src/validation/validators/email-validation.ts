@@ -6,7 +6,7 @@ export const emailValidation =
   (field: string): Validation =>
   (input: any): Error | null => {
     if (!validator.isEmail(input[field])) {
-      return new InvalidParamError(field);
+      return new InvalidParamError(`${field}. ${field} must be a valid email`);
     }
     return null;
   };

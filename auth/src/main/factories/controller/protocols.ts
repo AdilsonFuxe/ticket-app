@@ -3,6 +3,7 @@ import {
   requiredFieldValidation,
   validationComposite,
   emailValidation,
+  fieldLengthValidation,
 } from '../../../validation/validators';
 
 export const makeSignUpValidation = (): Validation => {
@@ -13,6 +14,7 @@ export const makeSignUpValidation = (): Validation => {
     validations.push(requiredFieldValidation(field));
   }
   validations.push(emailValidation('email'));
+  validations.push(fieldLengthValidation('password', 5, 20));
   return validationComposite(validations);
 };
 
@@ -24,5 +26,6 @@ export const makeSignInValidation = (): Validation => {
     validations.push(requiredFieldValidation(field));
   }
   validations.push(emailValidation('email'));
+  validations.push(fieldLengthValidation('password', 5, 20));
   return validationComposite(validations);
 };
