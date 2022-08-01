@@ -1,15 +1,20 @@
-import 'module-alias/register';
-import app from './config/app';
+import mongoose from 'mongoose';
 import env from './config/env';
 
-const start = async (): Promise<void> => {
+import app from './config/app';
+
+const start = async () => {
+  if (!env.jwtSecret) {
+    throw new Error('JWT_KEY must be defined');
+  }
   try {
-    app.listen(env.port, () => {
-      console.log(`Server listening on port ${env.port}`);
-    });
+    await mongoose.connect(env.mongoUrl);
   } catch (error) {
     console.error(error);
   }
+  app.listen(3000, () => {
+    console.log('Server is running on port 3000!!');
+  });
 };
 
 start();
