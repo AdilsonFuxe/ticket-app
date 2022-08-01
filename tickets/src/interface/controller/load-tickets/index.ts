@@ -5,7 +5,7 @@ import { BuildLoadTicketsController, validateFields } from './protocols';
 const buildLoadTicketsController: BuildLoadTicketsController =
   ({ loadTickets, sanitize }) =>
   async (httRequest) => {
-    const sanitizedParams = sanitize(httRequest.body, validateFields);
+    const sanitizedParams = sanitize(httRequest.query, validateFields);
     const tickets = await loadTickets(sanitizedParams);
     return ok(tickets);
   };
