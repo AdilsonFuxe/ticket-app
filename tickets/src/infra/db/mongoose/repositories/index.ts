@@ -1,4 +1,7 @@
-import { AddTicketRepository } from '@src/data/protocols/db';
+import {
+  AddTicketRepository,
+  LoadTicketsRepository,
+} from '@src/data/protocols/db';
 import { TicketModel } from '@src/infra/db/mongoose/models';
 import { MongoHelper } from '@src/infra/db/mongoose/helper';
 
@@ -8,4 +11,12 @@ export const addTicketRepository: AddTicketRepository = async (
   const doc = new TicketModel(params);
   await doc.save();
   return MongoHelper.serialize(doc);
+};
+
+export const loadTicketsRepository: LoadTicketsRepository = async (
+  params: LoadTicketsRepository.Params
+): Promise<LoadTicketsRepository.Response> => {
+  const result = await TicketModel.find(params);
+  const tickets = result.map(MongoHelper.serialize);
+  return tickets;
 };
