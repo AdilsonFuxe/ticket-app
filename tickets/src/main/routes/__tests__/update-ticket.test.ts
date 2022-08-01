@@ -35,4 +35,15 @@ describe('PUT /api/tickets/:id', () => {
       })
     );
   });
+
+  it('Should return 404 if ticket is not found', async () => {
+    const id = '62e80af3cbd956bb5606c560';
+    await request(app)
+      .put(`/api/tickets/${id}`)
+      .send({
+        price: '200.00',
+        title: 'amazon-ticket2',
+      })
+      .expect(404);
+  });
 });

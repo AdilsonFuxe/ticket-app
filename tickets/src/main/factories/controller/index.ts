@@ -39,5 +39,6 @@ export const makeUpdateTicketController = (): Controller =>
   updateTicketController({
     sanitize: sanitizeObject,
     updateTicket: makeDbUpdateTicket(),
+    loadTicketById: makeDbLoadTicketById(),
     validate: makeUpdateTicketValidation(),
   });

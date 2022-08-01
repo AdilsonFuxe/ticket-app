@@ -1,9 +1,10 @@
-import { UpdateTicket } from '@src/domain/usecases';
+import { UpdateTicket, LoadTicketById } from '@src/domain/usecases';
 import { Controller, SanitizeObj, Validation } from '@src/interface/protocols';
 
 type Dependencies = {
   validate: Validation;
   updateTicket: UpdateTicket;
+  loadTicketById: LoadTicketById;
   sanitize: SanitizeObj;
 };
 
