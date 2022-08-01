@@ -11,7 +11,7 @@
     "lint": "eslint src/**/*.ts",
     "lint-fix": "eslint --fix src/**/*.ts",
     "pretty": "prettier --write 'src/**/*.ts'",
-    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test": "jest --passWithNoTests  --noStackTrace --runInBand",
     "test:unit": "npm test -- --passWithNoTests --watch -c jest-unit-config.ts",
     "test:integration": "npm test -- --passWithNoTests --watch -c jest-integration-config.ts",
     "test:staged": "npm test -- --findRelatedTests",

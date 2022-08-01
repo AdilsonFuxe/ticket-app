@@ -11,6 +11,7 @@ export const addTicketRepository: AddTicketRepository = async (
   params: AddTicketRepository.Params
 ): Promise<AddTicketRepository.Response> => {
   const doc = new TicketModel(params);
+  await doc.save();
   const parsedDoc = JSON.parse(JSON.stringify(doc));
   return MongoHelper.serialize(parsedDoc);
 };

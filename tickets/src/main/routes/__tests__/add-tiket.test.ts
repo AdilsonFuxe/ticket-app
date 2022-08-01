@@ -7,11 +7,17 @@ describe('POST /api/tickets', () => {
       .post('/api/tickets')
       .send({
         price: '135.00',
-        title: 'amfasd',
+        title: 'amazon-ticket',
       })
       .expect(201);
     expect(httpResponse.body).toEqual(
-      expect.objectContaining({ price: '135.00', title: 'amfasd' })
+      expect.objectContaining({
+        price: '135.00',
+        title: 'amazon-ticket',
+        id: expect.any(String),
+        createdAt: expect.any(String),
+        updatedAt: expect.any(String),
+      })
     );
   });
 
@@ -25,7 +31,7 @@ describe('POST /api/tickets', () => {
 
     await request(app)
       .post('/api/tickets')
-      .send({ title: 'amfasd' })
+      .send({ title: 'amazon' })
       .expect(400);
   });
 });
