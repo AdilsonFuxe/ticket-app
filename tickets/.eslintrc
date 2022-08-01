@@ -1,49 +1,19 @@
 {
-  "parser": "@typescript-eslint/parser",
-  "extends": [
-      "airbnb/base",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:import/errors",
-      "plugin:import/warnings",
-      "plugin:import/typescript",
-      "prettier"
-  ],
-  "parserOptions": {
-      "ecmaVersion": 2018,
+    "extends": ["standard-with-typescript", "prettier"],
+    "plugins": ["prettier"],
+    "parserOptions": {
       "project": "./tsconfig.json"
-  },
-  "plugins": ["prettier"],
-  "rules": {
-      "prettier/prettier": ["error"],
-      "semi": ["error", "always"],
-      "object-curly-spacing": ["error", "always"],
-      "@typescript-eslint/explicit-function-return-type": "off",
-      "@typescript-eslint/no-explicit-any": 1,
-      "@typescript-eslint/no-inferrable-types": [
-          "warn",
-          {
-          "ignoreParameters": true
-          }
-      ],
-      "no-underscore-dangle": "off",
-      "no-shadow": "off",
-      "no-new": 0,
-      "no-console": "off",
-      "import/no-unresolved": "off",
-      "import/prefer-default-export": "off",
-      "@typescript-eslint/no-shadow": ["error"],
-      "@typescript-eslint/no-unused-vars": "warn",
-      "quotes": [2, "single", { "avoidEscape": true }],
-      "class-methods-use-this": "off",
-      "import/extensions": [
-          "error",
-          "ignorePackages",
-          {
-          "js": "never",
-          "jsx": "never",
-          "ts": "never",
-          "tsx": "never"
-          }
-      ]
+    },
+    "rules": {
+      "@typescript-eslint/consistent-type-definitions": "off",
+      "@typescript-eslint/strict-boolean-expressions": "off",
+      "@typescript-eslint/naming-convention": "warn",
+      "@typescript-eslint/no-misused-promises": "off",
+      "@typescript-eslint/no-namespace": "off",
+      "@typescript-eslint/consistent-type-assertions": "off",
+      "@typescript-eslint/no-redeclare": "off",
+      "@typescript-eslint/no-floating-promises": "off",
+      "@typescript-eslint/explicit-function-return-type": "off"
+    }
   }
-}
+  
