@@ -14,3 +14,14 @@ export const makeAddTicketValidation = (): Validation => {
 
   return validationComposite(validations);
 };
+
+export const makeUpdateTicketValidation = (): Validation => {
+  const validations: Validation[] = [];
+  const requiredFields = ['title', 'price'];
+
+  for (const field of requiredFields) {
+    validations.push(requiredFieldValidation(field));
+  }
+
+  return validationComposite(validations);
+};
