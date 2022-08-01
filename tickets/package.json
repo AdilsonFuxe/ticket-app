@@ -7,7 +7,6 @@
     "build": "rimraf dist && tsc -p tsconfig-build.json",
     "start": "node dist/main/server.js",
     "dev": "ts-node src/main/server.ts",
-    "prepare": "husky install",
     "lint": "eslint src/**/*.ts",
     "lint-fix": "eslint --fix src/**/*.ts",
     "pretty": "prettier --write 'src/**/*.ts'",
@@ -15,7 +14,8 @@
     "test:unit": "npm test -- --passWithNoTests --watch -c jest-unit-config.ts",
     "test:integration": "npm test -- --passWithNoTests --watch -c jest-integration-config.ts",
     "test:staged": "npm test -- --findRelatedTests",
-    "test:ci": "npm test -- --coverage"
+    "test:ci": "npm test -- --coverage",
+    "test:benchmark": "npx autocannon -c 500 -d 30 --workers 10 --renderStatusCodes --latency --wanmup [ -c 1 -d 2] localhost:3000"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +27,7 @@
     "@types/module-alias": "^2.0.1",
     "@types/node": "^18.6.3",
     "@types/supertest": "^2.0.12",
+    "autocannon": "^7.9.0",
     "git-commit-msg-linter": "^4.1.3",
     "jest": "^28.1.3",
     "mongodb-memory-server": "^8.8.0",
