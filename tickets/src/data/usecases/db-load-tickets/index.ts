@@ -1,11 +1,9 @@
-import { LoadTicketsTickets } from '@src/domain/usecases';
-import { BuildLoadTicketsTickets } from './protocols';
+import { LoadTickets } from '@src/domain/usecases';
+import { BuildLoadTickets } from './protocols';
 
-export const dbLoadTicketsTickets: BuildLoadTicketsTickets =
-  ({ loadTicketsTicketsRepository }) =>
-  async (
-    params: LoadTicketsTickets.Params
-  ): Promise<LoadTicketsTickets.Response> => {
-    const tickets = await loadTicketsTicketsRepository(params);
+export const dbLoadTickets: BuildLoadTickets =
+  ({ loadTicketsRepository }) =>
+  async (params: LoadTickets.Params): Promise<LoadTickets.Response> => {
+    const tickets = await loadTicketsRepository(params);
     return tickets;
   };

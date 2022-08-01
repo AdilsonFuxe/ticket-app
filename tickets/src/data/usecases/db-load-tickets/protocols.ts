@@ -1,10 +1,8 @@
-import { LoadTicketsTicketsRepository } from '@src/data/protocols/db';
-import { LoadTicketsTickets } from '@src/domain/usecases';
+import { LoadTicketsRepository } from '@src/data/protocols/db';
+import { LoadTickets } from '@src/domain/usecases';
 
 type Dependencies = {
-  loadTicketsTicketsRepository: LoadTicketsTicketsRepository;
+  loadTicketsRepository: LoadTicketsRepository;
 };
 
-export type BuildLoadTicketsTickets = (
-  dependencies: Dependencies
-) => LoadTicketsTickets;
+export type BuildLoadTickets = (dependencies: Dependencies) => LoadTickets;
