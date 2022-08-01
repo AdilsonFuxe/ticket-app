@@ -1,10 +1,8 @@
 import './setup-env';
 
 export default {
-  mongoUrl: process.env.MONGO_URL || 'mongodb://localhost:27017',
-  port: process.env.PORT || 5050,
-  jwtSecret:
-    process.env.JWT_SECRET ||
-    'e9cfc88d48b675ebdb4bdbf7384e5641d78d79f7192bb9823a1fece99b4078ab',
-  serverUrl: process.env.SERVER_URL || 'http://localhost:5050',
+  mongoUrl: 'mongodb://ticket-mongo-srv:27017/ticket',
+  port: 3000,
+  jwtSecret: process.env.JWT_KEY!,
+  salt: 12,
 };
