@@ -1,4 +1,8 @@
-import { AddTicket, LoadTicketsTickets } from '@src/domain/usecases';
+import {
+  AddTicket,
+  LoadTicketById,
+  LoadTicketsTickets,
+} from '@src/domain/usecases';
 
 export namespace AddTicketRepository {
   export type Params = AddTicket.Params;
@@ -16,4 +20,12 @@ export type LoadTicketsTicketsRepository = (
 export namespace LoadTicketsTicketsRepository {
   export type Params = LoadTicketsTickets.Params;
   export type Response = LoadTicketsTickets.Response;
+}
+
+export type LoadTicketByIdRepository = (
+  id: string
+) => Promise<LoadTicketByIdRepository.Response>;
+
+export namespace LoadTicketByIdRepository {
+  export type Response = LoadTicketById.Response;
 }
