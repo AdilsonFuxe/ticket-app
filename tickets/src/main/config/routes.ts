@@ -1,9 +1,8 @@
 import { Express, Router } from 'express';
-import helloRouter from '@src/main/routes/hello-world';
-
+import ticketsRouter from '@src/main/routes/tickets';
 
 export default (app: Express): void => {
   const router = Router();
-  helloRouter(router);
+  ticketsRouter(router);
   app.use('/v1', router);
 };
