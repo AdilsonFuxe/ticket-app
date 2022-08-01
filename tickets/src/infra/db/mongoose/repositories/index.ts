@@ -1,5 +1,6 @@
 import {
   AddTicketRepository,
+  LoadTicketByIdRepository,
   LoadTicketsRepository,
 } from '@src/data/protocols/db';
 import { TicketModel } from '@src/infra/db/mongoose/models';
@@ -19,4 +20,11 @@ export const loadTicketsRepository: LoadTicketsRepository = async (
   const result = await TicketModel.find(params);
   const tickets = result.map(MongoHelper.serialize);
   return tickets;
+};
+
+export const loadTicketByIdRepository: LoadTicketByIdRepository = async (
+  id: string
+): Promise<LoadTicketByIdRepository.Response> => {
+  const result = await TicketModel.findById(id);
+  return MongoHelper.serialize(result);
 };
