@@ -26,4 +26,9 @@ describe('GET /api/tickets/:id', () => {
       })
     );
   });
+
+  it('Should return 404 if ticket is not found', async () => {
+    const id = '62e80af3cbd956bb5606c560';
+    await request(app).get(`/api/tickets/${id}`).expect(404);
+  });
 });
