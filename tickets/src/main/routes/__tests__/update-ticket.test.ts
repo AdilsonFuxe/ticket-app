@@ -36,6 +36,19 @@ describe('PUT /api/tickets/:id', () => {
     );
   });
 
+  it('Should return 400 with missing price or title', async () => {
+    const id = '62e80af3cbd956bb5606c560';
+    await request(app)
+      .put(`/api/tickets/${id}`)
+      .send({ price: '135.00' })
+      .expect(400);
+
+    await request(app)
+      .put(`/api/tickets/${id}`)
+      .send({ title: 'amazon' })
+      .expect(400);
+  });
+
   it('Should return 404 if ticket is not found', async () => {
     const id = '62e80af3cbd956bb5606c560';
     await request(app)
