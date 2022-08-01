@@ -2,6 +2,7 @@ import {
   AddTicket,
   LoadTicketById,
   LoadTicketsTickets,
+  UpdateTicket,
 } from '@src/domain/usecases';
 
 export namespace AddTicketRepository {
@@ -28,4 +29,13 @@ export type LoadTicketByIdRepository = (
 
 export namespace LoadTicketByIdRepository {
   export type Response = LoadTicketById.Response;
+}
+
+export type UpdateTicketRepository = (
+  params: UpdateTicketRepository.Params
+) => Promise<UpdateTicketRepository.Response>;
+
+export namespace UpdateTicketRepository {
+  export type Params = UpdateTicket.Params;
+  export type Response = UpdateTicket.Response;
 }
