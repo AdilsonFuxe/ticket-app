@@ -1,6 +1,7 @@
 import { Ticket } from '@src/domain/models';
 
 export type UpdateTicket = (
+  id: string,
   params: UpdateTicket.Params
 ) => Promise<UpdateTicket.Response>;
 

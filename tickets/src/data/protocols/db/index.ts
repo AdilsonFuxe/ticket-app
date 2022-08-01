@@ -32,6 +32,7 @@ export namespace LoadTicketByIdRepository {
 }
 
 export type UpdateTicketRepository = (
+  id: string,
   params: UpdateTicketRepository.Params
 ) => Promise<UpdateTicketRepository.Response>;
 

@@ -3,7 +3,10 @@ import { BuildUpdateTicker } from './protocols';
 
 export const dbUpdateTicket: BuildUpdateTicker =
   ({ updateTicketRepository }) =>
-  async (params: UpdateTicket.Params): Promise<UpdateTicket.Response> => {
-    const ticket = await updateTicketRepository(params);
+  async (
+    id: string,
+    params: UpdateTicket.Params
+  ): Promise<UpdateTicket.Response> => {
+    const ticket = await updateTicketRepository(id, params);
     return ticket;
   };
