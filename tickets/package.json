@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist && tsc -p tsconfig-build.json",
     "start": "ts-node src/main/server.ts",
+    "build": "rimraf dist && tsc -p tsconfig-build.json",
     "dev": "ts-node src/main/server.ts",
     "lint": "eslint src/**/*.ts",
     "lint-fix": "eslint --fix src/**/*.ts",
