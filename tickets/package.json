@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig-build.json",
-    "start": "node dist/main/server.js",
+    "start": "ts-node src/main/server.ts",
     "dev": "ts-node src/main/server.ts",
     "lint": "eslint src/**/*.ts",
     "lint-fix": "eslint --fix src/**/*.ts",
