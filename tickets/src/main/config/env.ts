@@ -1,7 +1,7 @@
 import './setup-env';
 
 export default {
-  mongoUrl: 'mongodb://tickets-mongo-srv:27017/tickets',
+  mongoUrl: process.env.MONGO_URI!,
   port: 3000,
   jwtSecret: process.env.JWT_KEY!,
   salt: 12,
