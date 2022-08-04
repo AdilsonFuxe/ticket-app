@@ -1,13 +1,30 @@
-import { AddTicket } from '@src/domain/usecases';
+import { AddTicketRepository } from '@src/data/protocols/db';
+import { Ticket } from '@src/domain/models';
 import { dbAddTicket } from '.';
 
-const mockAddTicketParams = (): AddTicket.Params => ({
-  price: '109.99',
-  title: 'any_title',
+const date = new Date();
+
+const mockTicket = (): Ticket => ({
+  id: '62ec5682f730692a7c0152e3',
+  title: 'The Witcher 3: Wild Hunt',
+  price: '150.75',
+  createdAt: date,
+  updatedAt: date,
 });
 
+const mockAddTicketParams = () => ({
+  price: '150.75',
+  title: 'The Witcher 3: Wild Hunt',
+});
+
+const mockAddTicketRepository: AddTicketRepository = async (
+  params: AddTicketRepository.Params
+) => {
+  return await Promise.resolve(mockTicket());
+};
+
 const makeSut = () => {
-  const addTicketRepository = jest.fn();
+  const addTicketRepository = jest.fn(mockAddTicketRepository);
   const sut = dbAddTicket({ addTicketRepository });
   return { sut, addTicketRepository };
 };
