@@ -33,4 +33,11 @@ describe('DbLoadTickets', () => {
     await sut(params);
     expect(loadTicketsRepository).toHaveBeenCalledWith(params);
   });
+
+  it('Should throw if loadTicketsRepository throws', async () => {
+    const { sut, loadTicketsRepository } = makeSut();
+    loadTicketsRepository.mockRejectedValue(new Error());
+    const result = sut(mockLoadTicketsParam());
+    await expect(result).rejects.toThrow();
+  });
 });
