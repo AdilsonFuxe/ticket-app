@@ -1,7 +1,21 @@
 import request from 'supertest';
-import app from '../../config/app';
+import { MongoHelper } from '@src/infra/db/mongoose/helper';
+import { UserModel } from '@src/infra/db/mongoose/models';
+import app from '@src/main/config/app';
 
 describe('POST /api/users/signup', () => {
+  beforeAll(async () => {
+    await MongoHelper.connect(process.env.MONGO_URL);
+  });
+
+  afterAll(async () => {
+    await MongoHelper.disconnect();
+  });
+
+  beforeEach(async () => {
+    await UserModel.deleteMany({});
+  });
+
   it('Should return 201 on successful signup', async () => {
     await request(app)
       .post('/api/users/signup')
