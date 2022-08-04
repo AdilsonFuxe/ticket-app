@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/main/server.js",
+    "start": "node dist/main/server.js",
     "build": "rimraf dist && tsc -p tsconfig-build.json",
     "dev": "ts-node src/main/server.ts",
     "lint": "eslint src/**/*.ts",
