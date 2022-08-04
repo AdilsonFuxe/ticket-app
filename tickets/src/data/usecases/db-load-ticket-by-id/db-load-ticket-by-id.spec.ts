@@ -37,4 +37,10 @@ describe('DbLoadTicketById', () => {
     const result = sut('62ec5682f730692a7c0152e3');
     await expect(result).rejects.toThrow();
   });
+
+  it('Should return a ticket on success', async () => {
+    const { sut } = makeSut();
+    const result = await sut('62ec5682f730692a7c0152e3');
+    expect(result).toEqual(mockTicket());
+  });
 });
