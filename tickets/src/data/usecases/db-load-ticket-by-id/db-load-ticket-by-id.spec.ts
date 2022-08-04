@@ -1,5 +1,6 @@
 import { LoadTicketByIdRepository } from '@src/data/protocols/db';
 import { Ticket } from '@src/domain/models';
+import { dbLoadTicketById } from '.';
 
 const date = new Date();
 
@@ -19,7 +20,7 @@ const mockLoadTicketByIdRepository: LoadTicketByIdRepository = async (
 
 const makeSut = () => {
   const loadTicketByIdRepository = jest.fn(mockLoadTicketByIdRepository);
-  const sut = loadTicketByIdRepository;
+  const sut = dbLoadTicketById({ loadTicketByIdRepository });
   return { sut, loadTicketByIdRepository };
 };
 
