@@ -12,6 +12,6 @@ RUN npm run build
 FROM node:16-alpine
 WORKDIR /app
 COPY package.json ./
-RUN npm install --only=production
+RUN npm install --omit=dev
 COPY --from=0 /app/dist .
 CMD [ "npm", "start" ]
