@@ -12,5 +12,6 @@ export default {
   moduleNameMapper: {
     '@src/(.*)': '<rootDir>/src/$1',
   },
-  setupFilesAfterEnv: ['./src/main/setup-tests.ts'],
+  //setupFilesAfterEnv: ['./src/main/setup-tests.ts'],
+  preset: '@shelf/jest-mongodb',
 };
