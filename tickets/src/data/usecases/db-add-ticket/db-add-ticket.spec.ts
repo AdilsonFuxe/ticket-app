@@ -36,4 +36,11 @@ describe('DbAddTicket', () => {
     await sut(params);
     expect(addTicketRepository).toHaveBeenCalledWith(params);
   });
+
+  it('Should throw if addTicketRepository throws', async () => {
+    const { sut, addTicketRepository } = makeSut();
+    addTicketRepository.mockRejectedValue(new Error());
+    const result = sut(mockAddTicketParams());
+    await expect(result).rejects.toThrow();
+  });
 });
