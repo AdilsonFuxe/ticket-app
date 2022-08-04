@@ -1,7 +1,20 @@
 import request from 'supertest';
 import app from '@src/main/config/app';
+import { MongoHelper } from '@src/infra/db/mongoose/helper';
+import { TicketModel } from '@src/infra/db/mongoose/models';
 
 describe('GET /api/tickets', () => {
+  beforeAll(async () => {
+    await MongoHelper.connect(process.env.MONGO_URL);
+  });
+
+  afterAll(async () => {
+    await MongoHelper.disconnect();
+  });
+
+  beforeEach(async () => {
+    await TicketModel.deleteMany({});
+  });
   it('Should return 200 and a list with two tickets on get tickets success', async () => {
     await request(app)
       .post('/api/tickets')

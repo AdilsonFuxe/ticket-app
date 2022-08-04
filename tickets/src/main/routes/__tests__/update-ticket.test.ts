@@ -1,7 +1,20 @@
 import request from 'supertest';
 import app from '@src/main/config/app';
+import { MongoHelper } from '@src/infra/db/mongoose/helper';
+import { TicketModel } from '@src/infra/db/mongoose/models';
 
 describe('PUT /api/tickets/:id', () => {
+  beforeAll(async () => {
+    await MongoHelper.connect(process.env.MONGO_URL);
+  });
+
+  afterAll(async () => {
+    await MongoHelper.disconnect();
+  });
+
+  beforeEach(async () => {
+    await TicketModel.deleteMany({});
+  });
   it('Should return 200 on successful update ticket', async () => {
     const {
       body: { id },
