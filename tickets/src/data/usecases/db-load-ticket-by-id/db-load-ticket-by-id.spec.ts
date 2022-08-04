@@ -30,4 +30,11 @@ describe('DbLoadTicketById', () => {
     await sut(id);
     expect(loadTicketByIdRepository).toHaveBeenCalledWith(id);
   });
+
+  it('Should throw if loadTicketByIdRepository throws', async () => {
+    const { sut, loadTicketByIdRepository } = makeSut();
+    loadTicketByIdRepository.mockRejectedValue(new Error());
+    const result = sut('62ec5682f730692a7c0152e3');
+    await expect(result).rejects.toThrow();
+  });
 });
