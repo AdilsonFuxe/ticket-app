@@ -43,4 +43,10 @@ describe('DbAddTicket', () => {
     const result = sut(mockAddTicketParams());
     await expect(result).rejects.toThrow();
   });
+
+  it('Should return a ticket on success', async () => {
+    const { sut } = makeSut();
+    const result = await sut(mockAddTicketParams());
+    expect(result).toEqual(mockTicket());
+  });
 });
