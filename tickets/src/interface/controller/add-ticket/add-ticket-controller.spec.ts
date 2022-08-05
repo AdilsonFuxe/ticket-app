@@ -61,4 +61,11 @@ describe('AddTicketController', () => {
     sut(httpRequest);
     expect(sanitize).toHaveBeenCalledWith(httpRequest.body, validateFields);
   });
+
+  it('Should calls addTicket with correct params', async () => {
+    const { sut, addTicket } = makeSut();
+    const httpRequest = mockHttpRequest();
+    await sut(httpRequest);
+    expect(addTicket).toHaveBeenCalledWith(httpRequest.body);
+  });
 });
