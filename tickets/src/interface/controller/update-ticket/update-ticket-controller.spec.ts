@@ -4,6 +4,7 @@ import { MissingParamError } from '@src/interface/errors';
 import {
   badRequest,
   notFoundError,
+  ok,
   serverError,
 } from '@src/interface/helpers/http-helper';
 import { HttpRequest, Validation } from '@src/interface/protocols';
@@ -106,5 +107,13 @@ describe('UpdateTicketController', () => {
       httpRequest.params.id,
       httpRequest.body
     );
+  });
+
+  it('Should return 500 if updateTicket throws', async () => {
+    const { sut, updateTicket } = makeSut();
+    updateTicket.mockRejectedValueOnce(new Error());
+    const httpRequest = mockHttpRequest();
+    const httpResponse = await sut(httpRequest);
+    expect(httpResponse).toEqual(serverError(new Error()));
   });
 });
