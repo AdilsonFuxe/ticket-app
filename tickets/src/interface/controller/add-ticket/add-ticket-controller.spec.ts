@@ -1,0 +1,46 @@
+import { Ticket } from '@src/domain/models';
+import { AddTicket } from '@src/domain/usecases';
+import { HttpRequest, Validation } from '@src/interface/protocols';
+import { addTicketController } from '.';
+
+const date = new Date();
+
+const mockTicket = (): Ticket => ({
+  id: '62ec5682f730692a7c0152e3',
+  title: 'The Witcher 3: Wild Hunt',
+  price: '150.75',
+  createdAt: date,
+  updatedAt: date,
+});
+
+const mockHttpRequest = (): HttpRequest => ({
+  body: {
+    title: 'amazon-ticket',
+    price: '100.99',
+  },
+});
+
+const mockValidator: Validation = (input: any) => null;
+const mockAddTicket: AddTicket = async (params: AddTicket.Params) =>
+  await Promise.resolve(mockTicket());
+
+const makeSut = () => {
+  const validate = jest.fn(mockValidator);
+  const addTicket = jest.fn(mockAddTicket);
+  const sanitize = jest.fn().mockReturnValue(mockHttpRequest().body);
+  const sut = addTicketController({
+    validate,
+    addTicket,
+    sanitize,
+  });
+  return { sut, validate, addTicket, sanitize };
+};
+
+describe('AddTicketController', () => {
+  it('Should call validator with correct params', () => {
+    const { sut, validate } = makeSut();
+    const httpRequest = mockHttpRequest();
+    sut(httpRequest);
+    expect(validate).toHaveBeenCalledWith(httpRequest.body);
+  });
+});
