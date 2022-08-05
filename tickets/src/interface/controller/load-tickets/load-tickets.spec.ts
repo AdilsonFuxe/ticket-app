@@ -1,5 +1,6 @@
 import { Ticket } from '@src/domain/models';
 import { LoadTickets } from '@src/domain/usecases';
+import { serverError } from '@src/interface/helpers/http-helper';
 import { HttpRequest } from '@src/interface/protocols';
 import { loadTicketsController } from '.';
 import { validateFields } from './protocols';
@@ -47,5 +48,13 @@ describe('LoadTicketsController', () => {
     const httpRequest = mockHttpRequest();
     await sut(httpRequest);
     expect(loadTickets).toHaveBeenCalledWith(httpRequest.query);
+  });
+
+  it('Should return 500 if loadTickets throws', async () => {
+    const { sut, loadTickets } = makeSut();
+    loadTickets.mockRejectedValueOnce(new Error());
+    const httpRequest = mockHttpRequest();
+    const httpResponse = await sut(httpRequest);
+    expect(httpResponse).toEqual(serverError(new Error()));
   });
 });
