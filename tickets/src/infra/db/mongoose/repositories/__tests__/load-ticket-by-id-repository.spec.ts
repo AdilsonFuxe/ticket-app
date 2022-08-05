@@ -19,10 +19,17 @@ describe('LoadTicketByIdRepository', () => {
   beforeEach(async () => {
     await TicketModel.deleteMany({});
   });
+
   it('Should return a valid ticket on success', async () => {
     const { id } = await addTicketRepository(mockAddTicketParams());
     const ticket = await loadTicketByIdRepository(id);
     expect(ticket).toBeDefined();
     expect(ticket).toEqual(expect.objectContaining(mockAddTicketParams()));
+  });
+
+  it('Should return null if ticket id not found', async () => {
+    const id = '62ec5905f730692a7c0152e7';
+    const ticket = await loadTicketByIdRepository(id);
+    expect(ticket).toBeNull();
   });
 });
