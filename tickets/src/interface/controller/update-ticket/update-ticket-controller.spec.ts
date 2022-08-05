@@ -4,6 +4,7 @@ import { MissingParamError } from '@src/interface/errors';
 import { badRequest } from '@src/interface/helpers/http-helper';
 import { HttpRequest, Validation } from '@src/interface/protocols';
 import { updateTicketController } from '.';
+import { validateFields } from './protocols';
 
 const date = new Date();
 
@@ -58,5 +59,12 @@ describe('UpdateTicketController', () => {
     const httpRequest = mockHttpRequest();
     const httpResponse = await sut(httpRequest);
     expect(httpResponse).toEqual(badRequest(new MissingParamError('title')));
+  });
+
+  it('Should call sanitize with correct params', () => {
+    const { sut, sanitize } = makeSut();
+    const httpRequest = mockHttpRequest();
+    sut(httpRequest);
+    expect(sanitize).toHaveBeenCalledWith(httpRequest.body, validateFields);
   });
 });
