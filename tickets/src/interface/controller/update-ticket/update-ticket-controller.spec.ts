@@ -97,4 +97,14 @@ describe('UpdateTicketController', () => {
     const httpResponse = await sut(httpRequest);
     expect(httpResponse).toEqual(serverError(new Error()));
   });
+
+  it('Should call updateTicket with correct params', async () => {
+    const { sut, updateTicket } = makeSut();
+    const httpRequest = mockHttpRequest();
+    await sut(httpRequest);
+    expect(updateTicket).toHaveBeenCalledWith(
+      httpRequest.params.id,
+      httpRequest.body
+    );
+  });
 });
