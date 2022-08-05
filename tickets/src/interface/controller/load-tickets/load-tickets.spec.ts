@@ -1,6 +1,6 @@
 import { Ticket } from '@src/domain/models';
 import { LoadTickets } from '@src/domain/usecases';
-import { serverError } from '@src/interface/helpers/http-helper';
+import { ok, serverError } from '@src/interface/helpers/http-helper';
 import { HttpRequest } from '@src/interface/protocols';
 import { loadTicketsController } from '.';
 import { validateFields } from './protocols';
@@ -56,5 +56,11 @@ describe('LoadTicketsController', () => {
     const httpRequest = mockHttpRequest();
     const httpResponse = await sut(httpRequest);
     expect(httpResponse).toEqual(serverError(new Error()));
+  });
+
+  it('Should return 200 and a list of tickets on success', async () => {
+    const { sut } = makeSut();
+    const httpResponse = await sut(mockHttpRequest());
+    expect(httpResponse).toEqual(ok([mockTicket()]));
   });
 });
