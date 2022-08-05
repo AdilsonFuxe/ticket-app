@@ -116,4 +116,11 @@ describe('UpdateTicketController', () => {
     const httpResponse = await sut(httpRequest);
     expect(httpResponse).toEqual(serverError(new Error()));
   });
+
+  it('Should return 200 on success', async () => {
+    const { sut } = makeSut();
+    const httpRequest = mockHttpRequest();
+    const httpResponse = await sut(httpRequest);
+    expect(httpResponse).toEqual(ok(mockTicket()));
+  });
 });
