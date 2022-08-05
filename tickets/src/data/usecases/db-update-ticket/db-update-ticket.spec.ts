@@ -37,4 +37,11 @@ describe('DbUpdateTicket', () => {
       mockUpdateTicketParams()
     );
   });
+
+  it('Should throw if updateTicketRepository throws', async () => {
+    const { sut, updateTicketRepository } = makeSut();
+    updateTicketRepository.mockRejectedValue(new Error());
+    const result = sut(id, mockUpdateTicketParams());
+    await expect(result).rejects.toThrow();
+  });
 });
