@@ -44,4 +44,10 @@ describe('DbUpdateTicket', () => {
     const result = sut(id, mockUpdateTicketParams());
     await expect(result).rejects.toThrow();
   });
+
+  it('Should return a ticket on success', async () => {
+    const { sut } = makeSut();
+    const result = await sut(id, mockUpdateTicketParams());
+    expect(result).toEqual(mockTicket());
+  });
 });
