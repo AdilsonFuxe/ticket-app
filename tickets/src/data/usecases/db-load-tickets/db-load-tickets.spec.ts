@@ -40,4 +40,10 @@ describe('DbLoadTickets', () => {
     const result = sut(mockLoadTicketsParam());
     await expect(result).rejects.toThrow();
   });
+
+  it('Should return a ticket on success', async () => {
+    const { sut } = makeSut();
+    const result = await sut(mockLoadTicketsParam());
+    expect(result).toEqual([mockTicket()]);
+  });
 });
