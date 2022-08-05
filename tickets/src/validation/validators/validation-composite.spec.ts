@@ -15,7 +15,15 @@ const makeSut = () => {
 describe('ValidationComposite', () => {
   it('Should calls  all validations', () => {
     const { sut, validations } = makeSut();
-    sut({});
+    sut({ field: 'any_value' });
     validations.forEach((validation) => expect(validation).toHaveBeenCalled());
+  });
+
+  it('Should return  an error if an validation fails', () => {
+    const { sut, validations } = makeSut();
+    const error = new Error('any_error');
+    validations[0].mockReturnValueOnce(error);
+    const result = sut({ field: 'any_value' });
+    expect(result).toEqual(error);
   });
 });
