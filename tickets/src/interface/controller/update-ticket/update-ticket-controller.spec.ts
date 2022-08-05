@@ -17,6 +17,9 @@ const mockTicket = (): Ticket => ({
 });
 
 const mockHttpRequest = (): HttpRequest => ({
+  params: {
+    id: '62ec5682f730692a7c0152e3',
+  },
   body: {
     title: 'amazon-ticket',
     price: '100.99',
@@ -66,5 +69,12 @@ describe('UpdateTicketController', () => {
     const httpRequest = mockHttpRequest();
     sut(httpRequest);
     expect(sanitize).toHaveBeenCalledWith(httpRequest.body, validateFields);
+  });
+
+  it('Should call loadTicketById with correct id', async () => {
+    const { sut, loadTicketById } = makeSut();
+    const httpRequest = mockHttpRequest();
+    await sut(httpRequest);
+    expect(loadTicketById).toHaveBeenCalledWith(httpRequest.params.id);
   });
 });
