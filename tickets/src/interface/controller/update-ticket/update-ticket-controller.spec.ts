@@ -1,7 +1,11 @@
 import { Ticket } from '@src/domain/models';
 import { LoadTicketById, UpdateTicket } from '@src/domain/usecases';
 import { MissingParamError } from '@src/interface/errors';
-import { badRequest, notFoundError } from '@src/interface/helpers/http-helper';
+import {
+  badRequest,
+  notFoundError,
+  serverError,
+} from '@src/interface/helpers/http-helper';
 import { HttpRequest, Validation } from '@src/interface/protocols';
 import { updateTicketController } from '.';
 import { validateFields } from './protocols';
@@ -84,5 +88,13 @@ describe('UpdateTicketController', () => {
     const httpRequest = mockHttpRequest();
     const httpResponse = await sut(httpRequest);
     expect(httpResponse).toEqual(notFoundError('ticket'));
+  });
+
+  it('Should return 500 if loadTicketById throws', async () => {
+    const { sut, loadTicketById } = makeSut();
+    loadTicketById.mockRejectedValueOnce(new Error());
+    const httpRequest = mockHttpRequest();
+    const httpResponse = await sut(httpRequest);
+    expect(httpResponse).toEqual(serverError(new Error()));
   });
 });
