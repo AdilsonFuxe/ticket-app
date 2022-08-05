@@ -41,7 +41,7 @@ describe('DbLoadTickets', () => {
     await expect(result).rejects.toThrow();
   });
 
-  it('Should return a ticket on success', async () => {
+  it('Should return a list of tickets on success', async () => {
     const { sut } = makeSut();
     const result = await sut(mockLoadTicketsParam());
     expect(result).toEqual([mockTicket()]);
