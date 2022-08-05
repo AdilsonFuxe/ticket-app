@@ -26,7 +26,7 @@ const mockLoadTickets: LoadTickets = async (params: LoadTickets.Params) =>
 
 const makeSut = () => {
   const loadTickets = jest.fn(mockLoadTickets);
-  const sanitize = jest.fn(() => mockHttpRequest().body);
+  const sanitize = jest.fn(() => mockHttpRequest().query);
   const sut = loadTicketsController({
     loadTickets,
     sanitize,
@@ -40,5 +40,12 @@ describe('LoadTicketsController', () => {
     const httpRequest = mockHttpRequest();
     await sut(httpRequest);
     expect(sanitize).toHaveBeenCalledWith(httpRequest.query, validateFields);
+  });
+
+  it('Should call loadTickets with correct params', async () => {
+    const { sut, loadTickets } = makeSut();
+    const httpRequest = mockHttpRequest();
+    await sut(httpRequest);
+    expect(loadTickets).toHaveBeenCalledWith(httpRequest.query);
   });
 });
