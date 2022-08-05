@@ -1,5 +1,6 @@
 import { Ticket } from '@src/domain/models';
 import { LoadTicketById } from '@src/domain/usecases';
+import { notFoundError } from '@src/interface/helpers/http-helper';
 import { HttpRequest } from '@src/interface/protocols';
 import { loadOneTicketController } from '.';
 
@@ -36,5 +37,13 @@ describe('LoadOneTicketController', () => {
     const httpRequest = mockHttpRequest();
     await sut(httpRequest);
     expect(loadTicketById).toHaveBeenCalledWith(httpRequest.params.id);
+  });
+
+  it('Should return 404 if loadTicketById returns null', async () => {
+    const { sut, loadTicketById } = makeSut();
+    loadTicketById.mockReturnValueOnce(null);
+    const httpRequest = mockHttpRequest();
+    const httpResponse = await sut(httpRequest);
+    expect(httpResponse).toEqual(notFoundError('ticket'));
   });
 });
