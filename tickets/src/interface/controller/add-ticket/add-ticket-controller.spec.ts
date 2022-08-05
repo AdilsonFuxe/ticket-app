@@ -1,5 +1,7 @@
 import { Ticket } from '@src/domain/models';
 import { AddTicket } from '@src/domain/usecases';
+import { MissingParamError } from '@src/interface/errors';
+import { badRequest } from '@src/interface/helpers/http-helper';
 import { HttpRequest, Validation } from '@src/interface/protocols';
 import { addTicketController } from '.';
 
@@ -42,5 +44,13 @@ describe('AddTicketController', () => {
     const httpRequest = mockHttpRequest();
     sut(httpRequest);
     expect(validate).toHaveBeenCalledWith(httpRequest.body);
+  });
+
+  it('Should return 400 if validator returns an error', async () => {
+    const { sut, validate } = makeSut();
+    validate.mockReturnValueOnce(new MissingParamError('title'));
+    const httpRequest = mockHttpRequest();
+    const httpResponse = await sut(httpRequest);
+    expect(httpResponse).toEqual(badRequest(new MissingParamError('title')));
   });
 });
