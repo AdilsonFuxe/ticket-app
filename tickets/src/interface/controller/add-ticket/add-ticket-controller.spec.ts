@@ -1,7 +1,11 @@
 import { Ticket } from '@src/domain/models';
 import { AddTicket } from '@src/domain/usecases';
 import { MissingParamError } from '@src/interface/errors';
-import { badRequest, serverError } from '@src/interface/helpers/http-helper';
+import {
+  badRequest,
+  created,
+  serverError,
+} from '@src/interface/helpers/http-helper';
 import { HttpRequest, Validation } from '@src/interface/protocols';
 import { addTicketController } from '.';
 import { validateFields } from './protocols';
@@ -75,5 +79,12 @@ describe('AddTicketController', () => {
     const httpRequest = mockHttpRequest();
     const httpResponse = await sut(httpRequest);
     expect(httpResponse).toEqual(serverError(new Error()));
+  });
+
+  it('Should return 201 on addTicket success', async () => {
+    const { sut } = makeSut();
+    const httpRequest = mockHttpRequest();
+    const httpResponse = await sut(httpRequest);
+    expect(httpResponse).toEqual(created(mockTicket()));
   });
 });
