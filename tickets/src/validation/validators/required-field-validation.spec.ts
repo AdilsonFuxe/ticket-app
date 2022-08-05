@@ -1,5 +1,5 @@
 import { MissingParamError } from '@src/interface/errors';
-import { requiredFieldValidation } from './required-field-validation';
+import { requiredFieldValidation } from '.';
 
 const params = {
   title: 'any_title',

@@ -1,4 +1,4 @@
-import { validationComposite } from './validation-composite';
+import { validationComposite } from '.';
 
 const mockValidation = () => null;
 
