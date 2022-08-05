@@ -1,6 +1,10 @@
 import { Ticket } from '@src/domain/models';
 import { LoadTicketById } from '@src/domain/usecases';
-import { notFoundError, serverError } from '@src/interface/helpers/http-helper';
+import {
+  notFoundError,
+  ok,
+  serverError,
+} from '@src/interface/helpers/http-helper';
 import { HttpRequest } from '@src/interface/protocols';
 import { loadOneTicketController } from '.';
 
@@ -53,5 +57,12 @@ describe('LoadOneTicketController', () => {
     const httpRequest = mockHttpRequest();
     const httpResponse = await sut(httpRequest);
     expect(httpResponse).toEqual(serverError(new Error()));
+  });
+
+  it('Should return 200 success', async () => {
+    const { sut } = makeSut();
+    const httpRequest = mockHttpRequest();
+    const httpResponse = await sut(httpRequest);
+    expect(httpResponse).toEqual(ok(mockTicket()));
   });
 });
