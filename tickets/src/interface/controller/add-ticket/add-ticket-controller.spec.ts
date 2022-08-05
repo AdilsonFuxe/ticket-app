@@ -1,7 +1,7 @@
 import { Ticket } from '@src/domain/models';
 import { AddTicket } from '@src/domain/usecases';
 import { MissingParamError } from '@src/interface/errors';
-import { badRequest } from '@src/interface/helpers/http-helper';
+import { badRequest, serverError } from '@src/interface/helpers/http-helper';
 import { HttpRequest, Validation } from '@src/interface/protocols';
 import { addTicketController } from '.';
 import { validateFields } from './protocols';
@@ -67,5 +67,13 @@ describe('AddTicketController', () => {
     const httpRequest = mockHttpRequest();
     await sut(httpRequest);
     expect(addTicket).toHaveBeenCalledWith(httpRequest.body);
+  });
+
+  it('Should return 500 if addTicket throws', async () => {
+    const { sut, addTicket } = makeSut();
+    addTicket.mockRejectedValueOnce(new Error());
+    const httpRequest = mockHttpRequest();
+    const httpResponse = await sut(httpRequest);
+    expect(httpResponse).toEqual(serverError(new Error()));
   });
 });
