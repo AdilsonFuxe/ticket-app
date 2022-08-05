@@ -36,4 +36,9 @@ describe('LoadTicketsRepository', () => {
     const result = await loadTicketsRepository({});
     expect(result.length).toBe(2);
   });
+
+  it('Should return an empty list of tickets on success', async () => {
+    const result = await loadTicketsRepository({});
+    expect(result.length).toBe(0);
+  });
 });
